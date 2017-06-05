@@ -787,7 +787,7 @@ function button1_onclick(event) {
                     for (var _index = 0; _index < splittedArr.length; _index++) {
                         if (splittedArr[_index] !== "" && splittedArr[_index] !== "BY") {
                             tempBy.push({
-                                TBNAME: "",
+                                TBNAME: "employee",
                                 value: splittedArr[_index]
                             });
                         }
@@ -800,11 +800,22 @@ function button1_onclick(event) {
 
             } else if (keywordBuilderArr[l].startsWith(" WHERE")) {
                 _whereStr = keywordBuilderArr[l];
-                var tempWhere = {
-                    TBNAME: "",
-                    value: keywordBuilderArr[l].replace(/WHERE/g, " ")
-                };
-                $('#wherefield').tokenfield('createToken', tempWhere);
+                var tempWhere = [];
+                var splittedWhereArr = keywordBuilderArr[l].split(" ");
+                if (splittedWhereArr.includes("WHERE")) {
+                    for (var _whereindex = 0; _whereindex < splittedWhereArr.length; _whereindex++) {
+                        if (splittedWhereArr[_whereindex] !== "" && splittedWhereArr[_whereindex] !== "WHERE") {
+                            tempWhere.push({
+                                TBNAME: "employee",
+                                value: splittedWhereArr[_whereindex]
+                            });
+                        }
+                    }
+                }
+
+                for (var tempWhereIndex = 0; tempWhereIndex < tempWhere.length; tempWhereIndex++) {
+                    $('#wherefield').tokenfield('createToken', tempWhere[tempWhereIndex]);
+                }
             } else if (keywordBuilderArr[l].startsWith("IS EQUAL") &&
                 (enteredStringArr.indexOf("IS EQUAL") === (enteredStringArr.indexOf("WHERE") + 2))) {
                 _whereStr += ' EQ ' + "'" + enteredStringArr[enteredStringArr.indexOf("WHERE") + 3] + "'";
