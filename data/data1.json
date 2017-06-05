@@ -1,0 +1,192 @@
+{
+    "records": [{
+            "KEYWORD": "RANGE"
+        },
+        {
+            "KEYWORD": "IS EQUAL"
+        },
+        {
+            "KEYWORD": "RANGE FROM"
+        },
+        {
+            "KEYWORD": "RANGE IS"
+        },
+        {
+            "KEYWORD": "AS WELL AS"
+        },
+        {
+            "KEYWORD": "AND ALSO"
+        },
+        {
+            "KEYWORD": "ALSO"
+        },
+        {
+            "KEYWORD": "IN ADDITION"
+        },
+        {
+            "KEYWORD": "BY"
+        },
+        {
+            "KEYWORD": "NEXT TO"
+        },
+        {
+            "KEYWORD": "WITH"
+        },
+        {
+            "KEYWORD": "ALONG WITH"
+        },
+        {
+            "KEYWORD": "IS HIGHEST"
+        },
+        {
+            "KEYWORD": "IS LOWEST"
+        },
+        {
+            "KEYWORD": "WHAT IS MAX"
+        },
+        {
+            "KEYWORD": "WHAT IS MIN"
+        },
+        {
+            "KEYWORD": "IS LESS THAN"
+        },
+        {
+            "KEYWORD": "IS GREATER THAN"
+        },
+        {
+            "KEYWORD": "RANGE IN"
+        },
+        {
+            "KEYWORD": "WHAT IS THE MAXIMUM"
+        },
+        {
+            "KEYWORD": "WHAT IS THE MINIMUM"
+        },
+        {
+            "KEYWORD": "HIGH"
+        },
+        {
+            "KEYWORD": "LOW"
+        },
+        {
+            "KEYWORD": "IS HIGH"
+        },
+        {
+            "KEYWORD": "IS LOW"
+        },
+        {
+            "KEYWORD": "MAXIMUM"
+        },
+        {
+            "KEYWORD": "MINIMUM"
+        },
+        {
+            "KEYWORD": "WITH HIGHEST"
+        },
+        {
+            "KEYWORD": "WITH LOWEST"
+        },
+        {
+            "KEYWORD": "MAX OF"
+        },
+        {
+            "KEYWORD": "MIN OF"
+        },
+        {
+            "KEYWORD": "IS MAXIMUM"
+        },
+        {
+            "KEYWORD": "IS MINIMUM"
+        },
+        {
+            "KEYWORD": "ORDER BY HIGHEST"
+        },
+        {
+            "KEYWORD": "HIGHEST ORDER BY"
+        },
+        {
+            "KEYWORD": "ORDER BY LOWEST"
+        },
+        {
+            "KEYWORD": "LOWEST ORDER BY"
+        },
+        {
+            "KEYWORD": "IN DESCENDING"
+        },
+        {
+            "KEYWORD": "IN ASCENDING"
+        },
+        {
+            "KEYWORD": "SORT BY"
+        },
+        {
+            "KEYWORD": "IS LESS THAN OR EQUAL TO"
+        },
+        {
+            "KEYWORD": "IS GREATER THAN OR EQUAL TO"
+        },
+        {
+            "KEYWORD": "IS FROM"
+        },
+        {
+            "KEYWORD": "EMP CODE"
+        },
+        {
+            "KEYWORD": "FROM"
+        },
+        {
+            "KEYWORD": "FOLLOWED BY"
+        },
+        {
+            "KEYWORD": "BY LOWEST"
+        },
+        {
+            "KEYWORD": "CONTAINS"
+        },
+        {
+            "KEYWORD": "LIKE"
+        },
+        {
+            "KEYWORD": "AVERAGE"
+        },
+        {
+            "KEYWORD": "AVERAGE OF"
+        },
+        {
+            "KEYWORD": "SUM OF"
+        },
+        {
+            "KEYWORD": "COUNT OF"
+        },
+        {
+            "KEYWORD": "EMPLOYEE"
+        },
+        {
+            "KEYWORD": "NUMBER OF"
+        },
+        {
+            "KEYWORD": "EMPLOYEES"
+        },
+        {
+            "KEYWORD": "IS NOT EQUAL TO"
+        },
+        {
+            "KEYWORD": "NAME"
+        },
+        {
+            "KEYWORD": "IS LIKE"
+        },
+        {
+            "KEYWORD": "ALL"
+        },
+        {
+            "KEYWORD": "MORE THAN"
+        },
+        {
+            "KEYWORD": "WHERE"
+        },
+        {
+            "KEYWORD": "IS BETWEEN"
+        }
+    ]
+}
