@@ -776,37 +776,24 @@ function button1_onclick(event) {
         var actionVarBuilderArr = buildActionVar(modifiedTokens);
         for (var ml = 0; ml < actionVarBuilderArr.length; ml++) {
             _actionVar = _actionVar + ' ' + actionVarBuilderArr[ml].value;
-            /*if (actionvarTokensList && actionvarTokensList.length > 0) {
-                for (var k = 0; k < actionvarTokensList.length; k++) {
-                    if (actionvarTokensList.indexOf(actionVarBuilderArr[ml].value) > -1) {
-                        //item already present in the array
-                    } else {
-                        $('#actionvar').tokenfield('createToken', actionVarBuilderArr[ml]);
-                    }
-                }
-            }else{
-                 $('#actionvar').tokenfield('createToken', actionVarBuilderArr[ml]);
-            }*/
-
-
         }
 
 
-
+        $('#actionvar').tokenfield('setTokens', []);
         $('#byfield').tokenfield('setTokens', []);
         $('#wherefield').tokenfield('setTokens', []);
         for (var l = 0; l < keywordBuilderArr.length; l++) {
             if (keywordBuilderArr[l].startsWith(" BY")) {
                 _byStr = keywordBuilderArr[l];
                 var tempBy = {
-                    TBNAME:"",
+                    TBNAME: "",
                     value: keywordBuilderArr[l].replace(/BY/g, "\n")
                 };
                 $('#byfield').tokenfield('createToken', tempBy);
             } else if (keywordBuilderArr[l].startsWith(" WHERE")) {
                 _whereStr = keywordBuilderArr[l];
-                 var tempWhere = {
-                    TBNAME:"",
+                var tempWhere = {
+                    TBNAME: "",
                     value: keywordBuilderArr[l].replace(/WHERE/g, " ")
                 };
                 $('#wherefield').tokenfield('createToken', tempWhere);
@@ -814,7 +801,7 @@ function button1_onclick(event) {
                 (enteredStringArr.indexOf("IS EQUAL") === (enteredStringArr.indexOf("WHERE") + 2))) {
                 _whereStr += ' EQ ' + "'" + enteredStringArr[enteredStringArr.indexOf("WHERE") + 3] + "'";
                 var tempWhereEQ = {
-                    TBNAME:"",
+                    TBNAME: "",
                     value: keywordBuilderArr[l].replace(/WHERE/g, " ")
                 };
                 $('#wherefield').tokenfield('createToken', tempWhereEQ);
@@ -822,7 +809,7 @@ function button1_onclick(event) {
                 (enteredStringArr.indexOf("IS GREATER THAN") === (enteredStringArr.indexOf("WHERE") + 2))) {
                 _whereStr += ' GT ' + "'" + enteredStringArr[enteredStringArr.indexOf("WHERE") + 3] + "'";
                 var tempWhereGT = {
-                    TBNAME:"",
+                    TBNAME: "",
                     value: keywordBuilderArr[l].replace(/WHERE/g, " ")
                 };
                 $('#wherefield').tokenfield('createToken', tempWhereGT);
@@ -830,7 +817,7 @@ function button1_onclick(event) {
                 (enteredStringArr.indexOf("IS LESS THAN") === (enteredStringArr.indexOf("WHERE") + 2))) {
                 _whereStr += ' LT ' + "'" + enteredStringArr[enteredStringArr.indexOf("WHERE") + 3] + "'";
                 var tempWhereLT = {
-                    TBNAME:"",
+                    TBNAME: "",
                     value: keywordBuilderArr[l].replace(/WHERE/g, " ")
                 };
                 $('#wherefield').tokenfield('createToken', tempWhereLT);
@@ -838,7 +825,7 @@ function button1_onclick(event) {
                 (enteredStringArr.indexOf("IS LESS THAN OR EQUAL TO") === (enteredStringArr.indexOf("WHERE") + 2))) {
                 _whereStr += ' LE ' + "'" + enteredStringArr[enteredStringArr.indexOf("WHERE") + 3] + "'";
                 var tempWhereLE = {
-                    TBNAME:"",
+                    TBNAME: "",
                     value: keywordBuilderArr[l].replace(/WHERE/g, " ")
                 };
                 $('#wherefield').tokenfield('createToken', tempWhereLE);
@@ -846,21 +833,26 @@ function button1_onclick(event) {
                 (enteredStringArr.indexOf("IS GREATER THAN OR EQUAL TO") === (enteredStringArr.indexOf("WHERE") + 2))) {
                 _whereStr += ' GE ' + "'" + enteredStringArr[enteredStringArr.indexOf("WHERE") + 3] + "'";
                 var tempWhereGE = {
-                    TBNAME:"",
+                    TBNAME: "",
                     value: keywordBuilderArr[l].replace(/WHERE/g, " ")
                 };
                 $('#wherefield').tokenfield('createToken', tempWhereGE);
             } else if (keywordBuilderArr[l].startsWith("IS NOT EQUAL TO") &&
                 (enteredStringArr.indexOf("IS NOT EQUAL TO") === (enteredStringArr.indexOf("WHERE") + 2))) {
                 _whereStr += ' NE ' + "'" + enteredStringArr[enteredStringArr.indexOf("WHERE") + 3] + "'";
-               var tempWhereNE = {
-                    TBNAME:"",
+                var tempWhereNE = {
+                    TBNAME: "",
                     value: keywordBuilderArr[l].replace(/WHERE/g, " ")
                 };
                 $('#wherefield').tokenfield('createToken', tempWhereNE);
             } else if (keywordBuilderArr[l].startsWith(" CNT.")) {
                 _action = "SUM";
                 _actionVar = keywordBuilderArr[l];
+                var tempAct = {
+                    TBNAME: "employee",
+                    value: keywordBuilderArr[l].replace(/CNT./g, " ")
+                }
+                $('#actionvar').tokenfield('createToken', tempAct);
             } else {
                 //$('#wherefield').tokenfield('createToken', keywordBuilderArr[l]);
                 if (enteredStringArr.indexOf("WHERE") > -1) {
