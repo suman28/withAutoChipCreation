@@ -549,10 +549,6 @@ function _buildNewString(tokens) {
             for (var bb = 0; bb < tokens.length; bb++) {
                 if (tokens[bb].TBNAME === 'employee') {
                     actionVarArr[bb] = tokens[bb].value;
-                    // if ($.inArray( tokens[bb], actionTokens[0] ) ) {
-                    //     $('#actionvar').tokenfield('createToken', tokens[bb]);
-                    // }
-
                 } else if (tokens[bb].TBNAME === 'empdata') {
                     return;
                 } else {
@@ -779,17 +775,29 @@ function button1_onclick(event) {
         }
 
 
-        $('#actionvar').tokenfield('setTokens', []);
+
         $('#byfield').tokenfield('setTokens', []);
         $('#wherefield').tokenfield('setTokens', []);
         for (var l = 0; l < keywordBuilderArr.length; l++) {
             if (keywordBuilderArr[l].startsWith(" BY")) {
                 _byStr = keywordBuilderArr[l];
-                var tempBy = {
-                    TBNAME: "",
-                    value: keywordBuilderArr[l].replace(/BY/g, "\n")
-                };
-                $('#byfield').tokenfield('createToken', tempBy);
+                var tempBy = [];
+                var splittedArr = keywordBuilderArr[l].split(" ");
+                if (splittedArr.includes("BY")) {
+                    for (var _index = 0; _index < splittedArr.length; _index++) {
+                        if (splittedArr[_index] !== "" && splittedArr[_index] !== "BY") {
+                            tempBy.push({
+                                TBNAME: "",
+                                value: splittedArr[_index]
+                            });
+                        }
+                    }
+                }
+
+                for (var tempIndex = 0; tempIndex < tempBy.length; tempIndex++) {
+                    $('#byfield').tokenfield('createToken', tempBy[tempIndex]);
+                }
+
             } else if (keywordBuilderArr[l].startsWith(" WHERE")) {
                 _whereStr = keywordBuilderArr[l];
                 var tempWhere = {
@@ -800,6 +808,7 @@ function button1_onclick(event) {
             } else if (keywordBuilderArr[l].startsWith("IS EQUAL") &&
                 (enteredStringArr.indexOf("IS EQUAL") === (enteredStringArr.indexOf("WHERE") + 2))) {
                 _whereStr += ' EQ ' + "'" + enteredStringArr[enteredStringArr.indexOf("WHERE") + 3] + "'";
+
                 var tempWhereEQ = {
                     TBNAME: "",
                     value: keywordBuilderArr[l].replace(/WHERE/g, " ")
@@ -846,13 +855,24 @@ function button1_onclick(event) {
                 };
                 $('#wherefield').tokenfield('createToken', tempWhereNE);
             } else if (keywordBuilderArr[l].startsWith(" CNT.")) {
+                $('#actionvar').tokenfield('setTokens', []);
                 _action = "SUM";
                 _actionVar = keywordBuilderArr[l];
-                var tempAct = {
-                    TBNAME: "employee",
-                    value: keywordBuilderArr[l].replace(/CNT./g, " ")
+                var tempCNT = [];
+                var splittedCNTArr = keywordBuilderArr[l].split(/[\s.]+/);
+                if (splittedCNTArr.includes("CNT")) {
+                    for (var _CNTindex = 0; _CNTindex < splittedCNTArr.length; _CNTindex++) {
+                        if (splittedCNTArr[_CNTindex] !== "" && splittedCNTArr[_CNTindex] !== "CNT") {
+                            tempCNT.push({
+                                TBNAME: "",
+                                value: splittedCNTArr[_CNTindex]
+                            });
+                        }
+                    }
                 }
-                $('#actionvar').tokenfield('createToken', tempAct);
+                for (var tempCNTIndex = 0; tempCNTIndex < tempCNT.length; tempCNTIndex++) {
+                    $('#actionvar').tokenfield('createToken', tempCNT[tempCNTIndex]);
+                }
             } else {
                 //$('#wherefield').tokenfield('createToken', keywordBuilderArr[l]);
                 if (enteredStringArr.indexOf("WHERE") > -1) {
@@ -869,11 +889,11 @@ function button1_onclick(event) {
         for (var kk = 0; kk < enteredStringArr.length; kk++) {
             _actionVar = _actionVar + ' ' + enteredStringArr[kk];
             //it creates the chip 
-            var tempAct = {
+            var tempActCnt = {
                 TBNAME: "employee",
                 value: enteredStringArr[kk]
             }
-            $('#actionvar').tokenfield('createToken', tempAct);
+            $('#actionvar').tokenfield('createToken', tempActCnt);
         }
     }
 
