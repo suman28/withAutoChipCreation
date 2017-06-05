@@ -798,63 +798,77 @@ function button1_onclick(event) {
         for (var l = 0; l < keywordBuilderArr.length; l++) {
             if (keywordBuilderArr[l].startsWith(" BY")) {
                 _byStr = keywordBuilderArr[l];
-                $('#byfield').tokenfield('createToken', keywordBuilderArr[l].replace(/BY/g, "\n"));
+                var tempBy = {
+                    TBNAME:"",
+                    value: keywordBuilderArr[l].replace(/BY/g, "\n")
+                };
+                $('#byfield').tokenfield('createToken', tempBy);
             } else if (keywordBuilderArr[l].startsWith(" WHERE")) {
                 _whereStr = keywordBuilderArr[l];
-                $('#wherefield').tokenfield('createToken', keywordBuilderArr[l].replace(/WHERE/g, " "));
-                if (keywordBuilderArr[l + 1] && enteredStringArr[enteredStringArr.indexOf("WHERE") + 3]) {
-                    $('#wherefield').tokenfield('createToken', keywordBuilderArr[l + 1].replace(/WHERE/g, " "));
-                }
+                 var tempWhere = {
+                    TBNAME:"",
+                    value: keywordBuilderArr[l].replace(/WHERE/g, " ")
+                };
+                $('#wherefield').tokenfield('createToken', tempWhere);
             } else if (keywordBuilderArr[l].startsWith("IS EQUAL") &&
                 (enteredStringArr.indexOf("IS EQUAL") === (enteredStringArr.indexOf("WHERE") + 2))) {
                 _whereStr += ' EQ ' + "'" + enteredStringArr[enteredStringArr.indexOf("WHERE") + 3] + "'";
-                $('#wherefield').tokenfield('createToken', keywordBuilderArr[l].replace(/WHERE/g, " "));
-                if (keywordBuilderArr[l + 1] && enteredStringArr[enteredStringArr.indexOf("WHERE") + 3]) {
-                    $('#wherefield').tokenfield('createToken', keywordBuilderArr[l + 1].replace(/WHERE/g, " "));
-                }
+                var tempWhereEQ = {
+                    TBNAME:"",
+                    value: keywordBuilderArr[l].replace(/WHERE/g, " ")
+                };
+                $('#wherefield').tokenfield('createToken', tempWhereEQ);
             } else if (keywordBuilderArr[l].startsWith("IS GREATER THAN") &&
                 (enteredStringArr.indexOf("IS GREATER THAN") === (enteredStringArr.indexOf("WHERE") + 2))) {
                 _whereStr += ' GT ' + "'" + enteredStringArr[enteredStringArr.indexOf("WHERE") + 3] + "'";
-                $('#wherefield').tokenfield('createToken', keywordBuilderArr[l].replace(/WHERE/g, " "));
-                if (keywordBuilderArr[l + 1] && enteredStringArr[enteredStringArr.indexOf("WHERE") + 3]) {
-                    $('#wherefield').tokenfield('createToken', keywordBuilderArr[l + 1].replace(/WHERE/g, " "));
-                }
+                var tempWhereGT = {
+                    TBNAME:"",
+                    value: keywordBuilderArr[l].replace(/WHERE/g, " ")
+                };
+                $('#wherefield').tokenfield('createToken', tempWhereGT);
             } else if (keywordBuilderArr[l].startsWith("IS LESS THAN") &&
                 (enteredStringArr.indexOf("IS LESS THAN") === (enteredStringArr.indexOf("WHERE") + 2))) {
                 _whereStr += ' LT ' + "'" + enteredStringArr[enteredStringArr.indexOf("WHERE") + 3] + "'";
-                $('#wherefield').tokenfield('createToken', keywordBuilderArr[l].replace(/WHERE/g, " "));
-                if (keywordBuilderArr[l + 1] && enteredStringArr[enteredStringArr.indexOf("WHERE") + 3]) {
-                    $('#wherefield').tokenfield('createToken', keywordBuilderArr[l + 1].replace(/WHERE/g, " "));
-                }
+                var tempWhereLT = {
+                    TBNAME:"",
+                    value: keywordBuilderArr[l].replace(/WHERE/g, " ")
+                };
+                $('#wherefield').tokenfield('createToken', tempWhereLT);
             } else if (keywordBuilderArr[l].startsWith("IS LESS THAN OR EQUAL TO") &&
                 (enteredStringArr.indexOf("IS LESS THAN OR EQUAL TO") === (enteredStringArr.indexOf("WHERE") + 2))) {
                 _whereStr += ' LE ' + "'" + enteredStringArr[enteredStringArr.indexOf("WHERE") + 3] + "'";
-                $('#wherefield').tokenfield('createToken', keywordBuilderArr[l].replace(/WHERE/g, " "));
-                if (keywordBuilderArr[l + 1] && enteredStringArr[enteredStringArr.indexOf("WHERE") + 3]) {
-                    $('#wherefield').tokenfield('createToken', keywordBuilderArr[l + 1].replace(/WHERE/g, " "));
-                }
+                var tempWhereLE = {
+                    TBNAME:"",
+                    value: keywordBuilderArr[l].replace(/WHERE/g, " ")
+                };
+                $('#wherefield').tokenfield('createToken', tempWhereLE);
             } else if (keywordBuilderArr[l].startsWith("IS GREATER THAN OR EQUAL TO") &&
                 (enteredStringArr.indexOf("IS GREATER THAN OR EQUAL TO") === (enteredStringArr.indexOf("WHERE") + 2))) {
                 _whereStr += ' GE ' + "'" + enteredStringArr[enteredStringArr.indexOf("WHERE") + 3] + "'";
-                $('#wherefield').tokenfield('createToken', keywordBuilderArr[l].replace(/WHERE/g, " "));
-                if (keywordBuilderArr[l + 1] && enteredStringArr[enteredStringArr.indexOf("WHERE") + 3]) {
-                    $('#wherefield').tokenfield('createToken', keywordBuilderArr[l + 1].replace(/WHERE/g, " "));
-                }
+                var tempWhereGE = {
+                    TBNAME:"",
+                    value: keywordBuilderArr[l].replace(/WHERE/g, " ")
+                };
+                $('#wherefield').tokenfield('createToken', tempWhereGE);
             } else if (keywordBuilderArr[l].startsWith("IS NOT EQUAL TO") &&
                 (enteredStringArr.indexOf("IS NOT EQUAL TO") === (enteredStringArr.indexOf("WHERE") + 2))) {
                 _whereStr += ' NE ' + "'" + enteredStringArr[enteredStringArr.indexOf("WHERE") + 3] + "'";
-                $('#wherefield').tokenfield('createToken', keywordBuilderArr[l].replace(/WHERE/g, " "));
-                if (keywordBuilderArr[l + 1] && enteredStringArr[enteredStringArr.indexOf("WHERE") + 3]) {
-                    $('#wherefield').tokenfield('createToken', keywordBuilderArr[l + 1].replace(/WHERE/g, " "));
-                }
+               var tempWhereNE = {
+                    TBNAME:"",
+                    value: keywordBuilderArr[l].replace(/WHERE/g, " ")
+                };
+                $('#wherefield').tokenfield('createToken', tempWhereNE);
             } else if (keywordBuilderArr[l].startsWith(" CNT.")) {
                 _action = "SUM";
                 _actionVar = keywordBuilderArr[l];
             } else {
                 //$('#wherefield').tokenfield('createToken', keywordBuilderArr[l]);
-                //if ((enteredStringArr.indexOf(keywordBuilderArr[l]) === (enteredStringArr.indexOf("WHERE") + 3))) {
-                //  _whereStr += keywordBuilderArr[l];
-                //}
+                if (enteredStringArr.indexOf("WHERE") > -1) {
+                    if ((enteredStringArr.indexOf(keywordBuilderArr[l]) === (enteredStringArr.indexOf("WHERE") + 3))) {
+                        $('#wherefield').tokenfield('createToken', keywordBuilderArr[l]);
+                    }
+                }
+
             }
         }
     } else {
@@ -863,7 +877,11 @@ function button1_onclick(event) {
         for (var kk = 0; kk < enteredStringArr.length; kk++) {
             _actionVar = _actionVar + ' ' + enteredStringArr[kk];
             //it creates the chip 
-            $('#actionvar').tokenfield('createToken', enteredStringArr[kk]);
+            var tempAct = {
+                TBNAME: "employee",
+                value: enteredStringArr[kk]
+            }
+            $('#actionvar').tokenfield('createToken', tempAct);
         }
     }
 
