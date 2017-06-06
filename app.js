@@ -16,26 +16,26 @@ $(function () {
     var keywords = [];
     var parse;
     $.when(
-        $.get('/ibi_apps/run.bip?BIP_REQUEST_TYPE=BIP_RUN&BIP_folder=IBFS%253A%252FEDA%252FEDASERVE%252Ftypeahead&BIP_item=procedure_typeahead.fex&windowHandle=436960&IBI_random=4516.2870024981075', function (data) {
-            parse = JSON.parse(data);
-            items = parse.records;
-        }),
-        $.get('/ibi_apps/run.bip?BIP_REQUEST_TYPE=BIP_RUN&BIP_folder=IBFS%253A%252FEDA%252FEDASERVE%252Ftypeahead&BIP_item=procedure2.fex&windowHandle=271353&IBI_random=2165.7337772878413', function (data) {
-            parse = JSON.parse(data);
-            keywords = parse.records;
-        })
-
-        // $.get('data/data.json', function (data) {
-        //     //store records in items array
-        //     items = data.records;
+        // $.get('/ibi_apps/run.bip?BIP_REQUEST_TYPE=BIP_RUN&BIP_folder=IBFS%253A%252FEDA%252FEDASERVE%252Ftypeahead&BIP_item=procedure_typeahead.fex&windowHandle=436960&IBI_random=4516.2870024981075', function (data) {
+        //     parse = JSON.parse(data);
+        //     items = parse.records;
         // }),
-
-
-        // //get json from second record
-        // $.get('data/data1.json', function (data) {
-        //     //store records in keywords array
-        //     keywords = data.records;
+        // $.get('/ibi_apps/run.bip?BIP_REQUEST_TYPE=BIP_RUN&BIP_folder=IBFS%253A%252FEDA%252FEDASERVE%252Ftypeahead&BIP_item=procedure2.fex&windowHandle=271353&IBI_random=2165.7337772878413', function (data) {
+        //     parse = JSON.parse(data);
+        //     keywords = parse.records;
         // })
+
+        $.get('data/data.json', function (data) {
+            //store records in items array
+            items = data.records;
+        }),
+
+
+        //get json from second record
+        $.get('data/data1.json', function (data) {
+            //store records in keywords array
+            keywords = data.records;
+        })
 
 
 
@@ -816,7 +816,9 @@ function button1_onclick(event) {
                     $('#wherefield').tokenfield('createToken', tempWhereEQ);
                 }
 
-            } else if (keywordBuilderArr[l].startsWith("IS GREATER THAN")) {
+            }
+            // else if (keywordBuilderArr[l].startsWith("IS GREATER THAN")) {
+                else if (keywordBuilderArr[l] === "IS GREATER THAN") {
                 var tempWhereGT = {
                     TBNAME: "",
                     value: keywordBuilderArr[l].replace(/WHERE/g, " ")
@@ -828,7 +830,9 @@ function button1_onclick(event) {
                     $('#wherefield').tokenfield('createToken', tempWhereGT);
                 }
 
-            } else if (keywordBuilderArr[l].startsWith("IS LESS THAN")) {
+            } 
+            //else if (keywordBuilderArr[l].startsWith("IS LESS THAN")) {
+                else if (keywordBuilderArr[l] === "IS LESS THAN") {
                 var tempWhereLT = {
                     TBNAME: "",
                     value: keywordBuilderArr[l].replace(/WHERE/g, " ")
@@ -840,7 +844,9 @@ function button1_onclick(event) {
                 } else {
                     $('#wherefield').tokenfield('createToken', tempWhereLT);
                 }
-            } else if (keywordBuilderArr[l].startsWith("IS LESS THAN OR EQUAL TO")) {
+            } 
+            //else if (keywordBuilderArr[l].startsWith("IS LESS THAN OR EQUAL TO")) {
+                else if (keywordBuilderArr[l] === "IS LESS THAN OR EQUAL TO") {
                 var tempWhereLE = {
                     TBNAME: "",
                     value: keywordBuilderArr[l].replace(/WHERE/g, " ")
@@ -852,7 +858,9 @@ function button1_onclick(event) {
                 } else {
                     $('#wherefield').tokenfield('createToken', tempWhereLE);
                 }
-            } else if (keywordBuilderArr[l].startsWith("IS GREATER THAN OR EQUAL TO")) {
+            } 
+            //else if (keywordBuilderArr[l].startsWith("IS GREATER THAN OR EQUAL TO")) {
+            else if (keywordBuilderArr[l] === "IS GREATER THAN OR EQUAL TO") {
                 var tempWhereGE = {
                     TBNAME: "",
                     value: keywordBuilderArr[l].replace(/WHERE/g, " ")
@@ -901,6 +909,10 @@ function button1_onclick(event) {
                     if ((enteredStringArr.indexOf(keywordBuilderArr[l]) === (enteredStringArr.indexOf("WHERE") + 3))) {
                         $('#wherefield').tokenfield('createToken', keywordBuilderArr[l]);
                     }
+                } else {
+                    if (enteredStringArr.indexOf("BY") === -1) {
+                        $('#wherefield').tokenfield('createToken', keywordBuilderArr[l]);
+                    }
                 }
             }
         }
@@ -933,8 +945,9 @@ function button1_onclick(event) {
 
 
 
-
+   
     var dynamicurl = "&FEXTYPE=TABLE&DATABASE=EMPLOYEE&ACTION=" + _action + "&ACTIONVARIABLE=" + _actionVar + "&BYSTRING=" + _byStr + "&WHERESTRING=" + _whereStr;
+     alert(dynamicurl);
     // var dynamicurl = "&FEXTYPE=GRAPH&DATABASE=EMPLOYEE&ACTION=SUM&ACTIONVARIABLE=" + _actionVar + "&BYSTRING=" + _byStr + "&WHERESTRING=" + _whereStr;
     //document.getElementById('iframe2').src = _url + _ibiapp + _procedure + "&rnd=" + Math.random() + dynamicurl ;
     ajaxcall(dynamicurl);
